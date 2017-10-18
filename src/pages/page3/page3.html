@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      การนัดหมาย
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only solid (click)="goToPage10()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page3">
+  <br>
+  
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar><br>
+
+
+  
+  <ion-list>
+    
+  <ion-item-sliding *ngFor="let contect of contect">
+    <ion-item>
+        ชื่อลูกค้า : {{contect.name}}
+        <br>
+        <p>
+         สินค้า : {{contect.product}}
+        </p>
+        <p>
+         สถานที่ : {{contect.location}}
+        </p>
+        <p>
+         เบอร์โทรติดต่อ : {{contect.phone}}
+        </p>
+        <p>
+          เพิ่มเติม : {{contect.addit}}
+        </p>
+        <p>
+          วันที่ : {{contect.date}}
+        </p>
+    </ion-item>
+    <ion-item-options side="right">
+      <button (click)="edit(contect)" ion-button color="primary">
+        <ion-icon name="create"></ion-icon>
+        แก้ไข
+      </button>
+      <button (click)="delete(contect)" ion-button color="danger">
+          <ion-icon name="trash"></ion-icon>
+        ลบข้อมูล
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+
+</ion-list>
+    
+
+</ion-content>

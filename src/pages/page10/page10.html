@@ -1,0 +1,52 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>เพิ่มการนัดหมาย</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page10">
+  <ion-list>
+    
+    <ion-item>
+      <ion-label  floating>ชื่อ</ion-label>
+      <ion-input [(ngModel)]="name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label  floating>สินค้า</ion-label>
+        <ion-input [(ngModel)]="product" type="text"></ion-input>
+    </ion-item>
+
+      <ion-item>
+          <ion-label  floating>สถานที่</ion-label>
+          <ion-input [(ngModel)]="location" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label  floating>เบอร์โทรติดต่อ</ion-label>
+          <ion-input [(ngModel)]="phone" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label  floating>เพิ่มเติม</ion-label>
+          <ion-input [(ngModel)]="addit" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>วันที่</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+      </ion-item>
+  
+  </ion-list>
+
+<button (click)="save()" ion-button color="dark">
+  บันทึก
+</button>
+
+<button (click)="cancel()" ion-button color = "dark">
+  ยกเลิก
+</button>
+
+</ion-content>
