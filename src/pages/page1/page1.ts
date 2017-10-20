@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SplashScreen} from '@ionic-native/splash-screen';
 import { Page2Page } from '../page2/page2';
 import { Page3Page } from '../page3/page3';
 import { Page4Page } from '../page4/page4';
@@ -15,8 +16,9 @@ import { Page7Page } from '../page7/page7';
 })
 export class Page1Page {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,private splashScreen: SplashScreen) {
   }
+
   goToPage2(params){
     if (!params) params = {};
     this.navCtrl.push(Page2Page);
