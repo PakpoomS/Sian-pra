@@ -13,6 +13,7 @@ import { Page8Page } from '../pages/page8/page8';
 import { Page9Page } from '../pages/page9/page9';
 import { Page10Page } from '../pages/page10/page10';
 import { Page11Page } from '../pages/page11/page11';
+import { Page12Page} from '../pages/page12/page12';
 
 import { Camera } from '@ionic-native/camera';
 
@@ -36,7 +37,8 @@ import { IonicStorageModule  } from '@ionic/storage'
     Page8Page,
     Page9Page,
     Page10Page,
-    Page11Page
+    Page11Page,
+    Page12Page
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { IonicStorageModule  } from '@ionic/storage'
     Page8Page,
     Page9Page,
     Page10Page,
-    Page11Page
+    Page11Page,
+    Page12Page
   ],
   providers: [
     StatusBar,

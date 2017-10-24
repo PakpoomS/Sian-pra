@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>เพิ่มการนัดหมาย</ion-title>
+    <ion-title>เพิ่ม/แก้ไข การนัดหมาย</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -36,7 +36,7 @@
 
       <ion-item>
           <ion-label>วันที่</ion-label>
-          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+          <ion-datetime displayFormat="D/M/YYYY" min="2000" max="2050" [(ngModel)]="date"></ion-datetime>
       </ion-item>
   
   </ion-list>
