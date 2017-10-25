@@ -14,8 +14,8 @@
   
   <ion-list>
   <ion-item-sliding *ngFor="let give of give"> <br>
-    <ion-item>
-        
+    
+    <ion-item (click)="goToPage12(give)">    
         ชื่อพระ : {{give.a2}}
         <br>
         <p>
@@ -24,7 +24,9 @@
         <p>
         ประเภท : {{give.a3}}
         </p>
-
+        <p>
+        ประวัติการขาย : {{give.a14}}
+        </p>
     </ion-item>
     <ion-item-options side="right">
         <button (click)="edit(give)" ion-button color="primary">

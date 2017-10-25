@@ -27,7 +27,7 @@ export class Page11Page {
   private a11;
   private a12;
   private a13;
-
+  private a14 ='-';
   //ตัวแปร
   private db;
 
@@ -43,8 +43,7 @@ export class Page11Page {
   ionViewDidLoad(){
     this.setupDB();
     if(this.navParams.get('give_id')!=null){
-      //เรียกขึ้นมาแก้ไข
-      
+      //เรียกขึ้นมาแก้ไข 
       this.db.get(this.navParams.get('give_id'),(err, result) =>{   
         if(!err){
           this.give = result;
@@ -61,6 +60,7 @@ export class Page11Page {
           this.a11 = result.a11;
           this.a12 = result.a12;
           this.a13 = result.a13;
+          this.a14 = result.a14;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
@@ -83,6 +83,7 @@ export class Page11Page {
       this.give.a11 = this.a11;
       this.give.a12 = this.a12;
       this.give.a13 = this.a13;
+      this.give.a14 = this.a14;
       this.give.praImg = this.praImg;
       this.give.cerImg = this.cerImg;
       // update จากการแก้ไข
@@ -109,6 +110,7 @@ export class Page11Page {
         a11 : this.a11,
         a12 : this.a12,
         a13 : this.a13,
+        a14 : this.a14,
         praImg : this.praImg,
         cerImg : this.cerImg
       },(err,result)=>{

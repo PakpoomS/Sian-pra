@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>เพิ่มประวัติการขาย</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page13">
+  <ion-title text-center>พระในประวัติการได้มา</ion-title>
+  <br>
+  
+  <ion-list>
+      <ion-item-sliding *ngFor="let give of give"> <br>
+        
+        <ion-item >    
+            ชื่อพระ : {{give.a2}}
+            <br>
+            <p>
+            รุ่น : {{give.a12}}
+            </p>
+            <p>
+            ประเภท : {{give.a3}}
+            </p>
+        </ion-item>
+        <ion-item-options side="right">
+            <button  ion-button color="primary" (click)="clickSell()">
+              <ion-icon name="cart"></ion-icon>
+              ขาย
+            </button>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+</ion-content>

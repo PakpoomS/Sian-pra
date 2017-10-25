@@ -4,10 +4,31 @@
       ประวัติการขาย
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only solid>
+      <button ion-button icon-only solid (click)="goToPage13()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page5"></ion-content>
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page5">
+
+  <ion-list>
+      <ion-item-sliding *ngFor="let sell of sell"> <br>
+        
+        <ion-item>    
+            ชื่อพระ : {{sell.a2}}
+        <br>
+        <p>
+            รุ่น : {{sell.a12}}
+        </p>
+        </ion-item>
+        <ion-item-options side="right">
+            <button ion-button color="danger" (click)="delete(sell)">
+                <ion-icon name="trash"></ion-icon>
+              ลบข้อมูล
+            </button>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+</ion-content>
