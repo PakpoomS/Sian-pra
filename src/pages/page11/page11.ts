@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
-import PouchDB from 'pouchdb'
+import PouchDB from 'pouchdb';
 
 
 @Component({

@@ -3,6 +3,43 @@
     <ion-title>
       พระสะสม
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only solid (click)="goToPage14()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page8"></ion-content>
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page8">
+
+  <br>
+  <ion-searchbar placeholder="ค้นหาพระ" (ionInput)="getItems($event)"></ion-searchbar>
+  <br>
+
+  <ion-list>
+  <ion-item-sliding *ngFor="let collec of collec"> <br>
+    
+    <ion-item (click)="goToPage15(collec)">    
+        ชื่อพระ : {{collec.a1}}
+        <br>
+        <p>
+        รุ่น : {{collec.a2}}
+        </p>
+        <p>
+        ประเภท : {{collec.a3}}
+        </p>
+    </ion-item>
+    <ion-item-options side="right">
+        <button (click)="edit(collec)" ion-button color="primary">
+          <ion-icon name="create"></ion-icon>
+          แก้ไข
+        </button>
+        <button (click)="delete(collec)" ion-button color="danger">
+            <ion-icon name="trash"></ion-icon>
+          ลบข้อมูล
+        </button>
+      </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+</ion-content>

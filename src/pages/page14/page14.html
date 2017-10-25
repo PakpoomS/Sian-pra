@@ -1,18 +1,89 @@
-<!--
-  Generated template for the Page14Page page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>page14</ion-title>
+    <ion-title>เพิ่ม/แก้ไข พระสะสม</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page14">
+
+  <ion-title text-center >รูปพระสะสมจากอัลบั้ม</ion-title>
+  <button ion-button round color="dark" icon-start (click)="takePhotoAlbumPra()">
+    <ion-icon name="ios-archive-outline">&nbsp;จากอัลบั้มรูป</ion-icon>
+  </button>
+  <br>
+  <ion-card *ngIf="praImg">
+      <img [src]="praImg">
+  </ion-card>
+<br><br>
+
+
+
+ <ion-list>
+  
+    <ion-item>
+      <ion-label  floating>ชื่อพระ</ion-label>
+      <ion-input [(ngModel)]="a1" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label  floating>รุ่น</ion-label>
+        <ion-input [(ngModel)]="a2" type="text"></ion-input>
+    </ion-item>
+
+      <ion-item>
+        <ion-label  floating>ประเภท</ion-label>
+        <ion-select [(ngModel)]="a3" type="text"> 
+          <ion-option value = "พระเนื้อดิน">พระเนื้อดิน</ion-option>
+          <ion-option value = "พระเนื้อชิน">พระเนื้อชิน</ion-option>
+          <ion-option value = "พระเนื้อผง">พระเนื้อผง</ion-option>
+          <ion-option value = "พระเนื้อโลหะ">พระเนื้อโลหะ</ion-option>
+          <ion-option value = "พระเนื้อว่าน">พระเนื้อว่าน</ion-option>
+          <ion-option value = "พระเนื้ออื่น">พระเนื้ออื่น ๆ</ion-option>
+        </ion-select> 
+      </ion-item>
+
+      <ion-item>
+          <ion-label  floating>ราคา</ion-label>
+          <ion-input [(ngModel)]="a4" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label  floating>สถานที่ปลุกเสก</ion-label>
+          <ion-input [(ngModel)]="a5" type="text"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+          <ion-label  floating>ผู้ปลุกเสก</ion-label>
+          <ion-input [(ngModel)]="a6" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label  floating>จำนวนที่ปลุกเสก</ion-label>
+          <ion-input [(ngModel)]="a7" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label  floating>ประวัติการค้นพบ</ion-label>
+        <ion-input [(ngModel)]="a8" type="text"></ion-input>
+    </ion-item>
+  
+      <ion-item>
+          <ion-label  floating>ลำดับการได้มา</ion-label>
+          <ion-input [(ngModel)]="a9" type="text"></ion-input>
+      </ion-item>
+
+ </ion-list>
+
+<button (click)="save()" ion-button color="dark">
+  บันทึก
+</button>
+
+<button (click)="cancel()" ion-button color = "dark">
+  ยกเลิก
+</button>
 
 </ion-content>

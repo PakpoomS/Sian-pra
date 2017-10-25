@@ -20,6 +20,13 @@ export class Page4Page {
     this.navCtrl.push(Page11Page)
   }
 
+  goToPage12(give){
+    this.navCtrl.push(Page12Page,{
+     give_id : give._id
+    })
+
+  }
+
 
   ionViewDidEnter(){
     this.refresh();
@@ -44,12 +51,6 @@ export class Page4Page {
     })
   }
   
-  goToPage12(give){
-    this.navCtrl.push(Page12Page,{
-     give_id : give._id
-    })
-
-  }
 
   edit(give){ 
     this.navCtrl.push(Page11Page,{
@@ -66,6 +67,17 @@ export class Page4Page {
           this.refresh();
         }
       })
+    }
+  }
+
+  getItems(ev :any){
+    let val = ev.target.value;
+    if(val && val.trim() != ''){
+      this.give = this.give.filter((give:any) =>{
+        return (give.a2.toLowerCase().indexOf(val.toLowerCase()) >-1);
+      })
+    }else{
+      this.refresh();
     }
   }
   

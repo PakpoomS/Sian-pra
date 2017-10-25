@@ -16,15 +16,15 @@ import { Page11Page } from '../pages/page11/page11';
 import { Page12Page} from '../pages/page12/page12';
 import { Page13Page } from '../pages/page13/page13';
 import { Page14Page} from '../pages/page14/page14';
+import { Page15Page } from'../pages/page15/page15';
 
 import { Camera } from '@ionic-native/camera';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-//Storage
-import { IonicStorageModule  } from '@ionic/storage'
 
 @NgModule({
   declarations: [
@@ -42,12 +42,13 @@ import { IonicStorageModule  } from '@ionic/storage'
     Page11Page,
     Page12Page,
     Page13Page,
-    Page14Page
+    Page14Page,
+    Page15Page
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +66,8 @@ import { IonicStorageModule  } from '@ionic/storage'
     Page11Page,
     Page12Page,
     Page13Page,
-    Page14Page
+    Page14Page,
+    Page15Page
   ],
   providers: [
     StatusBar,

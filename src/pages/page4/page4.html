@@ -11,7 +11,10 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page4">
-  
+  <br>
+  <ion-searchbar placeholder="ค้นหาพระ" (ionInput)="getItems($event)"></ion-searchbar>
+  <br>
+
   <ion-list>
   <ion-item-sliding *ngFor="let give of give"> <br>
     
