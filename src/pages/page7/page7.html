@@ -5,4 +5,12 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page7"></ion-content>
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page7">
+
+  <ion-slides class="image-slider" loop="true" effect="coverflow" slidesPerView="1">
+    <ion-slides *ngFor="let give of give">
+        <img [src]="give.praImg" class="thumb-img" imageViewer>
+    </ion-slides>
+</ion-slides>
+
+</ion-content>

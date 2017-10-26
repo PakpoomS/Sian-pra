@@ -8,9 +8,9 @@
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page6">
 
   <ion-slides>
-      <ion-card *ngFor="let give of give">
-          <img [src]="give.cerImg">
-      </ion-card>
+      <ion-slides *ngFor="let give of give">
+          <img [src]="give.cerImg" imageViewer>
+      </ion-slides>
   </ion-slides>
   
 </ion-content>

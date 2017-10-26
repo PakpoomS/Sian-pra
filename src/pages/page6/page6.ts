@@ -7,6 +7,7 @@ import PouchDB from 'pouchdb';
   templateUrl: 'page6.html'
 })
 export class Page6Page {
+  cerImg : any;
   private db;
   private give;
 
@@ -29,7 +30,8 @@ export class Page6Page {
         for(let i=0; i<rows.length;i++){
 
           this.give.push(rows[i].doc);
-
+          
+          this.cerImg = result.cerImg;
         }
       }
     })
