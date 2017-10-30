@@ -18,9 +18,9 @@
 
   
   <ion-list>
-  <ion-item-sliding *ngFor="let sell of sell">
+  <ion-item-sliding *ngFor="let sell of sell" >
     <br>
-    <ion-item *ngIf="sell.a15 =='มี'">
+    <ion-item *ngIf="sell.a15 =='มี'" (click)="goToPage16(sell)">
         ชื่อลูกค้า : {{sell.a1}}
         <br>
         <p>

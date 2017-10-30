@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController , NavParams } from 'ionic-angular';
+import { Page10Page} from '../page10/page10';
 import  PouchDB  from 'pouchdb'
+
 
 @Component({
   selector: 'page-page7',
@@ -9,9 +11,6 @@ import  PouchDB  from 'pouchdb'
 export class Page7Page {
 
   
-  private praImg;
-  private praImg2;
-  private praImg3;
   private db;
   private db2;
   private db3;
@@ -19,7 +18,25 @@ export class Page7Page {
   private collec;
   private sell;
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController,public navParams : NavParams) {}
+
+  goToPage10(give){
+    this.navCtrl.push(Page10Page,{
+      give_id : give._id
+    })
+  }
+
+  goToPage10a(sell){
+    this.navCtrl.push(Page10Page,{
+      sell_id : sell._id
+    })
+  }
+
+  goToPage10b(collec){
+    this.navCtrl.push(Page10Page,{
+      collec_id : collec._id
+    })
+  }
 
   ionViewDidEnter(){
     this.refresh();
@@ -30,10 +47,6 @@ export class Page7Page {
     this.db = new PouchDB('give');
     this.db2 = new PouchDB('sell');
     this.db3 = new PouchDB('collec');
-    
-    this.praImg=[];
-    this.praImg2=[];
-    this.praImg3=[];
 
     this.give = [];
     this.sell = [];
@@ -45,7 +58,6 @@ export class Page7Page {
         let rows = result.rows;
         
         for(let i=0; i<rows.length;i++){
-
           this.give.push(rows[i].doc);
         }
       }
@@ -56,10 +68,7 @@ export class Page7Page {
         let rows = result.rows;
         
         for(let i=0; i<rows.length;i++){
-
           this.sell.push(rows[i].doc);
-          
-          //this.praImg2 = result.praImg;
         }
       }
     })
@@ -69,14 +78,9 @@ export class Page7Page {
         let rows = result.rows;
         
         for(let i=0; i<rows.length;i++){
-
           this.collec.push(rows[i].doc);
-          
-          //this.praImg3 = result.praImg;
         }
       }
     })
   }
-
-  
 }

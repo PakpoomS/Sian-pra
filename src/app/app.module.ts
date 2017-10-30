@@ -19,6 +19,9 @@ import { Page13Page } from '../pages/page13/page13';
 import { Page14Page} from '../pages/page14/page14';
 import { Page15Page } from'../pages/page15/page15';
 import { Page16Page } from'../pages/page16/page16';
+import { Page17Page } from'../pages/page17/page17';
+import { Page18Page } from'../pages/page18/page18';
+import { Page19Page } from'../pages/page19/page19';
 
 //ข้อมูลพระต่าง ๆ //ส่วนพระดิน
 import { PradinPage } from'../pages/pagespra/pradin/pradin';
@@ -54,6 +57,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page13Page,
     Page14Page,
     Page15Page,
+    Page16Page,
+    Page17Page,
+    Page18Page,
+    Page19Page,
     PradinPage,
     PradinDataPage,
     PradinData2Page,
@@ -84,6 +91,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page13Page,
     Page14Page,
     Page15Page,
+    Page16Page,
+    Page17Page,
+    Page18Page,
+    Page19Page,
     PradinPage,
     PradinDataPage,
     PradinData2Page,

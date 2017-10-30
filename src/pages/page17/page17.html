@@ -1,0 +1,60 @@
+<ion-header>
+
+<ion-navbar>
+    <ion-title>เพิ่ม/แก้ไข บทความสะสม</ion-title>
+</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;">
+
+  <ion-list>
+    
+      <ion-item>
+        <ion-label  floating>ชื่อบทความ :</ion-label>
+        <ion-input [(ngModel)]="a1" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label  floating>ชื่อผู้เขียน :</ion-label>
+          <ion-input [(ngModel)]="a2" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+              <ion-label  floating>หมายเหตุ :</ion-label>
+              <ion-input [(ngModel)]="a3" type="text"></ion-input>
+      </ion-item> 
+  
+    </ion-list>
+
+    <ion-title text-center >รูปภาพ</ion-title>
+    <button ion-button round color="dark" (click)="takePhotoPra()">
+            <ion-icon name="camera"></ion-icon>
+        </button>
+        <button ion-button round color="dark" icon-start (click)="takePhotoAlbumPra()">
+            <ion-icon name="ios-archive-outline">&nbsp;จากอัลบั้มรูป</ion-icon>
+    </button>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 *ngFor="let praImg of praImg ; let id = index">
+            <ion-card>
+                    <ion-icon  ios="ios-add-circle" md="md-add-circle"class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+                <img [src]="praImg" imageViewer>
+            </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <br>
+    <div class ="center">
+    <button center (click)="save()" ion-button color="dark" round>
+            บันทึก
+    </button>
+          
+    <button center (click)="cancel()" ion-button color = "dark" round>
+            ยกเลิก
+    </button>
+    </div>
+
+</ion-content>

@@ -11,10 +11,18 @@
   
   <ion-list>
   
-    <ion-item>
-      <ion-label  floating>วิธีที่ได้มา</ion-label>
-      <ion-input [(ngModel)]="a1" type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+                <ion-label>วิธีการได้มา</ion-label>
+                <ion-select [(ngModel)]="a1" type="text" okText="ตกลง" cancelText="ยกเลิก"> 
+                  <ion-option (ionSelect)="etcf()"value = "เช่า">เช่า</ion-option>
+                  <ion-option (ionSelect)="etcf()"value = "ไม่ได้เช่า">ไม่ได้เช่า</ion-option>
+                  <ion-option (ionSelect)="etct()" value = "">อื่น ๆ</ion-option>
+                </ion-select>   
+              
+            </ion-item>
+            <ion-item>
+                    <ion-input [(ngModel)]="a1"  disabled={{dis}} type="text"></ion-input>
+            </ion-item>
 
     <ion-item>
         <ion-label  floating>ชื่อ</ion-label>
@@ -37,6 +45,9 @@
               <ion-option (ionSelect)="etcf()" value = "พระเนื้อว่าน">พระเนื้อว่าน</ion-option>
               <ion-option (ionSelect)="etct()" value = "">พระเนื้ออื่น ๆ</ion-option>
             </ion-select> 
+    </ion-item>
+    
+    <ion-item>
             <ion-input [(ngModel)]="a4"  disabled={{dis}} type="text"></ion-input>
     </ion-item>
 
@@ -56,7 +67,7 @@
         </ion-item>
 
       <ion-item>
-          <ion-label>เวลาปลุกเสก  ชั่วโมง : นาที : วินาที </ion-label>
+          <ion-label>เวลาปลุกเสก :</ion-label>
           <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="a8" doneText="ตกลง" cancelText="ยกเลิก"></ion-datetime>
       </ion-item>
 

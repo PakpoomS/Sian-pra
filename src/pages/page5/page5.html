@@ -16,7 +16,7 @@
   <ion-list>
       <ion-item-sliding  *ngFor="let sell of sell"> <br>
       
-        <ion-item>
+        <ion-item (click)="goToPage16(sell)">
             ชื่อพระ : {{sell.a1}}
             <br>
             <p>

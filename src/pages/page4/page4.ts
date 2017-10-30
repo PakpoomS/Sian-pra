@@ -80,5 +80,5 @@ export class Page4Page {
       this.refresh();
     }
   }
-  
+
 }

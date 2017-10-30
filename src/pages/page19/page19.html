@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;">
+  <ion-grid>
+    <ion-row>
+        <ion-col col-6 *ngFor="let praImg of praImg">
+        <ion-card>
+            <img [src]="praImg" imageViewer>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+</ion-grid>
+<br>
+</ion-content>

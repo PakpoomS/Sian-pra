@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { Page13Page } from '../page13/page13';
+import {Page16Page} from '../page16/page16';
 import PouchDB from 'pouchdb';
 
 @Component({
@@ -14,7 +15,12 @@ export class Page5Page {
 
   constructor(public navCtrl: NavController,public navParams: NavParams) {}
 
-  
+  goToPage16(sell){
+    this.navCtrl.push(Page16Page,{
+      sell_id : sell._id
+    })
+  }
+
   goToPage13(){
     this.navCtrl.push(Page13Page)
   }

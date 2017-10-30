@@ -7,85 +7,60 @@ import PouchDB from 'pouchdb';
   templateUrl: 'page10.html',
 })
 export class Page10Page {
-  private name;
-  private product;
-  private location;
-  private phone;
-  private addit;
-  private date;
-
+  
   private db;
+  private db2;
+  private db3;
 
-  private contect;
+  private name;
+  private give;
+  private sell;
+  private collec;
+  praImg :any;
+  praImg2:any;
+  praImg3:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
   
 
   setupDB(){
-    this.db = new PouchDB('contect');
+    this.db = new PouchDB('give');
+    this.db2 = new PouchDB('sell');
+    this.db3 = new PouchDB('collec');
+    this.praImg =[];
+    this.praImg2=[];
+    this.praImg3=[];
   }
-
   ionViewDidLoad(){
     this.setupDB();
-    if(this.navParams.get('contect_id')!=null){
-      //เรียกขึ้นมาแก้ไข
-      
-      this.db.get(this.navParams.get('contect_id'),(err, result) =>{
-        
+    if(this.navParams.get('give_id')!=null){
+      this.db.get(this.navParams.get('give_id'),(err, result) =>{
         if(!err){
-          this.contect = result;
-          this.name = result.name;
-          this.product = result.product;
-          this.location = result.location;
-          this.phone = result.phone;
-          this.addit = result.addit;
-          this.date = result.date;
+          this.give = result;
+          this.name = result.a2;
+          this.praImg = result.praImg;
+        }
+      })
+     }
+     if(this.navParams.get('sell_id')!=null){
+      this.db2.get(this.navParams.get('sell_id'),(err, result) =>{
+        if(!err){
+          this.sell = result;
+          this.name = result.a1;
+          this.praImg = result.praImg;
         }
       })
     }
-  }
-
-  save(){
-    if(this.contect){
-      this.contect.name = this.name;
-      this.contect.product = this.product;
-      this.contect.location = this.location;
-      this.contect.phone = this.phone;
-      this.contect.addit = this.addit;
-      this.contect.date = this.date;
-      // update จากการแก้ไข
-     this.db.put(this.contect,(err, result) => {
-       if(!err){
-          alert('อัพเดตข้อมูลเรียบร้อย');
-          this.navCtrl.pop();
-       }
-     }); 
-
-    }else{
-      //สร้างใหม่
-      this.db.post({
-        name : this.name,
-        product : this.product,
-        location : this.location,
-        phone : this.phone,
-        addit : this.addit,
-        date : this.date
-      },(err,result)=>{
+    if(this.navParams.get('collec_id')!=null){
+      this.db3.get(this.navParams.get('collec_id'),(err, result) =>{
         if(!err){
-          alert('บันทึกเรียบร้อย');
-          this.navCtrl.pop();
+          this.collec = result;
+          this.name = result.a1;
+          this.praImg = result.praImg;
         }
-  
-    });
-    
-    }
-    
-}
-
-  cancel(){
-    this.navCtrl.pop();
-
+      })
   }
+
+
+ }
 }

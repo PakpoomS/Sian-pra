@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
-import {PouchDB} from 'pouchdb';
 import { PradinPage } from'../pagespra/pradin/pradin';
 
 @Component({
