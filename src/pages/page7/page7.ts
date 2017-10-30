@@ -47,8 +47,6 @@ export class Page7Page {
         for(let i=0; i<rows.length;i++){
 
           this.give.push(rows[i].doc);
-          
-          //this.praImg = result.praImg;
         }
       }
     })
