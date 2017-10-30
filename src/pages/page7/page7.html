@@ -7,10 +7,36 @@
 </ion-header>
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page7">
 
-  <ion-slides class="image-slider" loop="true" effect="coverflow" slidesPerView="1">
-    <ion-slides *ngFor="let give of give">
-        <img [src]="give.praImg" class="thumb-img" imageViewer>
-    </ion-slides>
-</ion-slides>
+
+  <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let give of give ; let praImg of praImg">
+          <ion-card class="releative">
+           <img [src] ="give.praImg">
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-grid>
+        <ion-row>
+          <ion-col col-6 *ngFor="let sell of sell">
+            <ion-card class="releative">
+             <img [src]="sell.praImg">
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+          <ion-row>
+            <ion-col col-6 *ngFor="let collec of collec">
+              <ion-card class="releative">
+               <img [src]="collec.praImg">
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
 
 </ion-content>

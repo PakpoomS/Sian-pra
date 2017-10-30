@@ -10,18 +10,20 @@ import PouchDB from 'pouchdb';
 export class Page5Page {
   
   private sell;
-
   private db;
+
   constructor(public navCtrl: NavController,public navParams: NavParams) {}
 
+  
   goToPage13(){
     this.navCtrl.push(Page13Page)
   }
-  
+
   ionViewDidEnter(){
     this.refresh();
 
   }
+
   refresh(){
     this.db = new PouchDB('sell');
     
@@ -30,15 +32,21 @@ export class Page5Page {
     this.db.allDocs({include_docs: true},(err, result)=>{
       if(!err){
         let rows = result.rows;
-        
         for(let i=0; i<rows.length;i++){
-
           this.sell.push(rows[i].doc);
-
         }
       }
     })
   }
+
+  edit(sell){
+    
+    this.navCtrl.push(Page13Page,{
+     sell_id : sell._id
+    })
+
+  }
+
   delete(sell){
     if(confirm('คุณต้องการลบข้อมูลนี้ใช่ไหม ?')){
       this.db.remove(sell, (err , result) =>{
@@ -49,4 +57,16 @@ export class Page5Page {
       })
     }
   }
+  
+  getItems(ev :any){
+    let val = ev.target.value;
+    if(val && val.trim() != ''){
+      this.sell = this.sell.filter((sell:any) =>{
+        return (sell.a1.toLowerCase().indexOf(val.toLowerCase()) >-1);
+      })
+    }else{
+      this.refresh();
+    }
+  }
+
 }

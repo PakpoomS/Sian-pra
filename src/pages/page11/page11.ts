@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams ,AlertController} from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import PouchDB from 'pouchdb';
 
@@ -10,9 +10,7 @@ import PouchDB from 'pouchdb';
 })
 export class Page11Page {
 
-  praImg : any ;
-  cerImg : any ;
-
+  
   // ตัวแปรข้อมูลทั้งหมด
   private a1;
   private a2;
@@ -27,17 +25,38 @@ export class Page11Page {
   private a11;
   private a12;
   private a13;
-  private a14 ='-';
+  private a14;
+  private praImg;
+  private cerImg;
+  private audio;
+
+  private base64Img :string;
+
   //ตัวแปร
   private db;
 
   //ตัวแปร Database
   private give;
 
-  constructor(private camera: Camera ,public navCtrl: NavController, public navParams: NavParams) {}
+
+
+  dis:boolean = true;
+  dis2:boolean = true;
+
+
+  constructor(private camera: Camera ,public navCtrl: NavController, public navParams: NavParams, private alertCtrl : AlertController) {}
   
+  etcf(){
+    this.dis=true;
+  }
+  etct(){
+    this.dis = false;
+  }
+
   setupDB(){
     this.db = new PouchDB('give');
+    this.praImg=[];
+    this.cerImg=[];
   }
   
   ionViewDidLoad(){
@@ -61,6 +80,7 @@ export class Page11Page {
           this.a12 = result.a12;
           this.a13 = result.a13;
           this.a14 = result.a14;
+          this.audio = result.audio;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
@@ -84,6 +104,7 @@ export class Page11Page {
       this.give.a12 = this.a12;
       this.give.a13 = this.a13;
       this.give.a14 = this.a14;
+      this.give.audio = this.audio;
       this.give.praImg = this.praImg;
       this.give.cerImg = this.cerImg;
       // update จากการแก้ไข
@@ -111,6 +132,7 @@ export class Page11Page {
         a12 : this.a12,
         a13 : this.a13,
         a14 : this.a14,
+        audio : this.audio,
         praImg : this.praImg,
         cerImg : this.cerImg
       },(err,result)=>{
@@ -132,67 +154,128 @@ cancel(){
   
   
   
-  //ถ่ายจากกล้อง
-  takePhotoPra(){
+ //ถ่ายจากกล้อง
+ takePhotoPra(){
+  let options:CameraOptions = {
+    destinationType: this.camera.DestinationType.DATA_URL,
+    sourceType: this.camera.PictureSourceType.CAMERA,
+    encodingType: this.camera.EncodingType.JPEG,
+    saveToPhotoAlbum: false,
+    correctOrientation: true
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.base64Img = 'data:image/jpeg;base64,' + imageData;
+      this.praImg.push(this.base64Img);
+      this.praImg.reverse();
+    }, (err) => {
+    // Handle error
+    });
+  }
+
+  takePhotoAlbumPra(){
     let options:CameraOptions = {
       destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.CAMERA,
+      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
       encodingType: this.camera.EncodingType.JPEG,
       saveToPhotoAlbum: false,
       correctOrientation: true
       }
       this.camera.getPicture(options).then((imageData) => {
-        this.praImg = 'data:image/jpeg;base64,' + imageData;
+        this.base64Img = 'data:image/jpeg;base64,' + imageData;
+        this.praImg.push(this.base64Img);
+        this.praImg.reverse();
       }, (err) => {
       // Handle error
       });
     }
-    //นำออกจากอัลบั้ม
-    takePhotoAlbumPra(){
+
+    takePhotoCer(){
       let options:CameraOptions = {
         destinationType: this.camera.DestinationType.DATA_URL,
-        sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+        sourceType: this.camera.PictureSourceType.CAMERA,
         encodingType: this.camera.EncodingType.JPEG,
         saveToPhotoAlbum: false,
         correctOrientation: true
         }
         this.camera.getPicture(options).then((imageData) => {
-          this.praImg = 'data:image/jpeg;base64,' + imageData;
+          this.base64Img = 'data:image/jpeg;base64,' + imageData;
+          this.cerImg.push(this.base64Img);
+          this.cerImg.reverse();
         }, (err) => {
         // Handle error
         });
       }
-
-      takePhotoCer(){
+  
+      takePhotoAlbumCer(){
         let options:CameraOptions = {
           destinationType: this.camera.DestinationType.DATA_URL,
-          sourceType: this.camera.PictureSourceType.CAMERA,
+          sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
           encodingType: this.camera.EncodingType.JPEG,
           saveToPhotoAlbum: false,
           correctOrientation: true
           }
           this.camera.getPicture(options).then((imageData) => {
-            this.cerImg = 'data:image/jpeg;base64,' + imageData;
+            this.base64Img = 'data:image/jpeg;base64,' + imageData;
+            this.cerImg.push(this.base64Img);
+            this.cerImg.reverse();
           }, (err) => {
           // Handle error
           });
         }
-        //นำออกจากอัลบั้ม
-        takePhotoAlbumCer(){
-          let options:CameraOptions = {
-            destinationType: this.camera.DestinationType.DATA_URL,
-            sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-            encodingType: this.camera.EncodingType.JPEG,
-            saveToPhotoAlbum: false,
-            correctOrientation: true
+
+  deletePhoto(index) {
+    let confirm = this
+      .alertCtrl
+      .create({
+        title: 'คุณต้องการลบภาพนี้ใช่หรือไม่ ?',
+        message: '',
+        buttons: [
+          {
+            text: 'ยกเลิก',
+            handler: () => {
+              console.log('Disagree clicked');
             }
-            this.camera.getPicture(options).then((imageData) => {
-              this.cerImg = 'data:image/jpeg;base64,' + imageData;
-            }, (err) => {
-            // Handle error
-            });
+          }, {
+            text: 'ตกลง',
+            handler: () => {
+              console.log('Agree clicked');
+              this
+                .praImg
+                .splice(index, 1);
+              //return true;
+            }
           }
-      
+        ]
+      });
+    confirm.present();
+  }
+
+  deletePhoto2(index) {
+    let confirm = this
+      .alertCtrl
+      .create({
+        title: 'คุณต้องการลบภาพนี้ใช่หรือไม่ ?',
+        message: '',
+        buttons: [
+          {
+            text: 'ยกเลิก',
+            handler: () => {
+              console.log('Disagree clicked');
+            }
+          }, {
+            text: 'ตกลง',
+            handler: () => {
+              console.log('Agree clicked');
+              this
+                .cerImg
+                .splice(index, 1);
+              //return true;
+            }
+          }
+        ]
+      });
+    confirm.present();
+  }
 
     
 }

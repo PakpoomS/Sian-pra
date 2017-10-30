@@ -9,33 +9,7 @@
 
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page11">
   
-    <ion-title text-center >รูปพระ</ion-title>
-  <button ion-button round color="dark" (click)="takePhotoPra()" >
-    <ion-icon name="ios-camera-outline"></ion-icon>
-  </button>
-  <button ion-button round color="dark" icon-start (click)="takePhotoAlbumPra()">
-    <ion-icon name="ios-archive-outline">&nbsp;จากอัลบั้มรูป</ion-icon>
-  </button>
-  <br>
-  <ion-card *ngIf="praImg">
-      <img [src]="praImg">
-  </ion-card>
-<br><br>
-
-<ion-title text-center>ใบประกันพระ</ion-title>
-<button ion-button round color="dark" (click)="takePhotoCer()" >
-  <ion-icon name="ios-camera-outline"></ion-icon>
-</button>
-<button ion-button round color="dark" icon-start (click)="takePhotoAlbumCer()">
-  <ion-icon name="ios-archive-outline">&nbsp;จากอัลบั้มรูป</ion-icon>
-</button>
-<br>
-<ion-card *ngIf="cerImg">
-    <img [src]="cerImg">
-</ion-card>
-<br><br>
-
- <ion-list>
+  <ion-list>
   
     <ion-item>
       <ion-label  floating>วิธีที่ได้มา</ion-label>
@@ -47,76 +21,130 @@
         <ion-input [(ngModel)]="a2" type="text"></ion-input>
     </ion-item>
 
-      <ion-item>
-        <ion-label  floating>ประเภท</ion-label>
-        <ion-select [(ngModel)]="a3" type="text"> 
-          <ion-option value = "พระเนื้อดิน">พระเนื้อดิน</ion-option>
-          <ion-option value = "พระเนื้อชิน">พระเนื้อชิน</ion-option>
-          <ion-option value = "พระเนื้อผง">พระเนื้อผง</ion-option>
-          <ion-option value = "พระเนื้อโลหะ">พระเนื้อโลหะ</ion-option>
-          <ion-option value = "พระเนื้อว่าน">พระเนื้อว่าน</ion-option>
-          <ion-option value = "พระเนื้ออื่น">พระเนื้ออื่น ๆ</ion-option>
-        </ion-select> 
-      </ion-item>
+    <ion-item>
+            <ion-label  floating>รุ่น</ion-label>
+            <ion-input [(ngModel)]="a3" type="text"></ion-input>
+    </ion-item> 
+    
+    
+    <ion-item>
+            <ion-label>ประเภท</ion-label>
+            <ion-select [(ngModel)]="a4" type="text"> 
+              <ion-option (ionSelect)="etcf()" value = "พระเนื้อดิน">พระเนื้อดิน</ion-option>
+              <ion-option (ionSelect)="etcf()" value = "พระเนื้อชิน">พระเนื้อชิน</ion-option>
+              <ion-option (ionSelect)="etcf()" value = "พระเนื้อผง">พระเนื้อผง</ion-option>
+              <ion-option (ionSelect)="etcf()" value = "พระเนื้อโลหะ">พระเนื้อโลหะ</ion-option>
+              <ion-option (ionSelect)="etcf()" value = "พระเนื้อว่าน">พระเนื้อว่าน</ion-option>
+              <ion-option (ionSelect)="etct()" value = "">พระเนื้ออื่น ๆ</ion-option>
+            </ion-select> 
+            <ion-input [(ngModel)]="a4"  disabled={{dis}} type="text"></ion-input>
+    </ion-item>
 
       <ion-item>
           <ion-label  floating>ราคาเริ่มต้น</ion-label>
-          <ion-input [(ngModel)]="a4" type="text"></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label  floating>สถานที่ปลุกเสก</ion-label>
           <ion-input [(ngModel)]="a5" type="text"></ion-input>
       </ion-item>
 
       <ion-item>
+          <ion-label  floating>เจ้าของเดิม</ion-label>
+          <ion-input [(ngModel)]="a6" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+            <ion-label  floating>สถานที่ปลุกเสก</ion-label>
+            <ion-input [(ngModel)]="a7" type="text"></ion-input>
+        </ion-item>
+
+      <ion-item>
           <ion-label>เวลาปลุกเสก  ชั่วโมง : นาที : วินาที </ion-label>
-          <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="a6"></ion-datetime>
+          <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="a8" doneText="ตกลง" cancelText="ยกเลิก"></ion-datetime>
       </ion-item>
 
       <ion-item>
           <ion-label  floating>ผู้ปลุกเสก</ion-label>
-          <ion-input [(ngModel)]="a7" type="text"></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label  floating>จำนวนที่ปลุกเสก</ion-label>
-          <ion-input [(ngModel)]="a8" type="text"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-          <ion-label  floating>ลำดับการได้มา</ion-label>
           <ion-input [(ngModel)]="a9" type="text"></ion-input>
       </ion-item>
 
       <ion-item>
-          <ion-label  floating>ประวัติการค้นพบ</ion-label>
+          <ion-label  floating>จำนวนที่ปลุกเสก</ion-label>
           <ion-input [(ngModel)]="a10" type="text"></ion-input>
       </ion-item>
-
+  
       <ion-item>
-          <ion-label  floating>ชี้จุดเด่น</ion-label>
+          <ion-label  floating>ลำดับการได้มา</ion-label>
           <ion-input [(ngModel)]="a11" type="text"></ion-input>
       </ion-item>
 
       <ion-item>
-          <ion-label  floating>รุ่น</ion-label>
+          <ion-label  floating>ประวัติการค้นพบ</ion-label>
           <ion-input [(ngModel)]="a12" type="text"></ion-input>
       </ion-item>
 
       <ion-item>
-          <ion-label  floating>เพิ่มเติม</ion-label>
+          <ion-label  floating>ชี้จุดเด่น</ion-label>
           <ion-input [(ngModel)]="a13" type="text"></ion-input>
       </ion-item>
 
+      
+
+      <ion-item>
+          <ion-label  floating>เพิ่มเติม</ion-label>
+          <ion-input [(ngModel)]="a14" type="text"></ion-input>
+      </ion-item>
+
  </ion-list>
+ <br>
+ <button ion-button round color="dark">อัพโหลดเสียง</button>
+ <br>
+     <ion-title text-center >รูปพระ</ion-title>
+     <button ion-button round color="dark" (click)="takePhotoPra()">
+             <ion-icon name="camera"></ion-icon>
+         </button>
+         <button ion-button round color="dark" icon-start (click)="takePhotoAlbumPra()">
+             <ion-icon name="ios-archive-outline">&nbsp;จากอัลบั้มรูป</ion-icon>
+     </button>
 
-<button (click)="save()" ion-button color="dark">
-  บันทึก
-</button>
+     <ion-grid>
+         <ion-row>
+             <ion-col col-6 *ngFor="let praImg of praImg ; let id = index">
+             <ion-card>
+                     <ion-icon  ios="ios-add-circle" md="md-add-circle"class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+                 <img [src]="praImg" imageViewer>
+             </ion-card>
+             </ion-col>
+         </ion-row>
+     </ion-grid>
+ 
+ <br>
+     <ion-title text-center>ใบประกันพระ</ion-title>
+ <button ion-button round color="dark" (click)="takePhotoCer()">
+         <ion-icon name="camera" ></ion-icon>
+     </button>
+     <button ion-button round color="dark" icon-start (click)="takePhotoAlbumCer()">
+         <ion-icon name="ios-archive-outline">&nbsp;จากอัลบั้มรูป</ion-icon>
+ </button>
+ 
+ <ion-grid>
+         <ion-row>
+             <ion-col col-6 *ngFor="let cerImg of cerImg ; let id = index">
+             <ion-card>
+                     <ion-icon  ios="ios-add-circle" md="md-add-circle"class="deleteIcon" (click)="deletePhoto2(id)"></ion-icon>
+                 <img [src]="cerImg" imageViewer>
+             </ion-card>
+             </ion-col>
+         </ion-row>
+     </ion-grid>
 
-<button (click)="cancel()" ion-button color = "dark">
-  ยกเลิก
-</button>
+ <br>
+ <br>
+ <div class ="center">
+ <button center (click)="save()" ion-button color="dark" round>
+         บันทึก
+ </button>
+       
+ <button center (click)="cancel()" ion-button color = "dark" round>
+         ยกเลิก
+ </button>
+ </div>
 
 </ion-content>

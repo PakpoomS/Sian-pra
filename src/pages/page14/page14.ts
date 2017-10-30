@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import PouchDB from 'pouchdb';
 
-/**
- * Generated class for the Page14Page page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-page14',
@@ -16,7 +10,7 @@ import PouchDB from 'pouchdb';
 })
 export class Page14Page {
 
-  praImg : any;
+  
   // ตัวแปรข้อมูลทั้งหมด
   private a1;
   private a2;
@@ -27,16 +21,29 @@ export class Page14Page {
   private a7;
   private a8;
   private a9;
+  private praImg;
+  private base64Img :string;
   //ตัวแปร
   private db;
 
   //ตัวแปร Database
   private collec;
 
-  constructor(private camera : Camera , public navCtrl: NavController, public navParams: NavParams) {}
+  dis:boolean = true;
+  dis2:boolean = true;
+
+  constructor(private camera : Camera , public navCtrl: NavController, public navParams: NavParams,public alertCtrl : AlertController) {}
+
+  etcf(){
+    this.dis=true;
+  }
+  etct(){
+    this.dis = false;
+  }
 
   setupDB(){
     this.db = new PouchDB('collec');
+    this.praImg=[];
   }
 
   ionViewDidLoad(){
@@ -93,7 +100,7 @@ export class Page14Page {
         a7 : this.a7,
         a8 : this.a8,
         a9 : this.a9,
-        praImg : this.praImg,
+        praImg : this.praImg
       },(err,result)=>{
         if(!err){
           alert('บันทึกเรียบร้อย');
@@ -110,19 +117,65 @@ cancel(){
   this.navCtrl.pop();
 
 }
-takePhotoAlbumPra(){
+
+takePhotoPra(){
   let options:CameraOptions = {
     destinationType: this.camera.DestinationType.DATA_URL,
-    sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+    sourceType: this.camera.PictureSourceType.CAMERA,
     encodingType: this.camera.EncodingType.JPEG,
     saveToPhotoAlbum: false,
     correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
-      this.praImg = 'data:image/jpeg;base64,' + imageData;
+      this.base64Img = 'data:image/jpeg;base64,' + imageData;
+      this.praImg.push(this.base64Img);
+      this.praImg.reverse();
     }, (err) => {
     // Handle error
     });
   }
 
+  takePhotoAlbumPra(){
+    let options:CameraOptions = {
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      encodingType: this.camera.EncodingType.JPEG,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+      }
+      this.camera.getPicture(options).then((imageData) => {
+        this.base64Img = 'data:image/jpeg;base64,' + imageData;
+        this.praImg.push(this.base64Img);
+        this.praImg.reverse();
+      }, (err) => {
+      // Handle error
+      });
+    }
+
+    deletePhoto(index) {
+      let confirm = this
+        .alertCtrl
+        .create({
+          title: 'คุณต้องการลบภาพนี้ใช่หรือไม่ ?',
+          message: '',
+          buttons: [
+            {
+              text: 'ยกเลิก',
+              handler: () => {
+                console.log('Disagree clicked');
+              }
+            }, {
+              text: 'ตกลง',
+              handler: () => {
+                console.log('Agree clicked');
+                this
+                  .praImg
+                  .splice(index, 1);
+                //return true;
+              }
+            }
+          ]
+        });
+      confirm.present();
+    }
 }

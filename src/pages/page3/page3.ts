@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
-import { Page10Page } from '../page10/page10';
+import { Page13Page } from '../page13/page13';
 import PouchDB from 'pouchdb'
 
 @Component({
@@ -10,14 +10,14 @@ import PouchDB from 'pouchdb'
 export class Page3Page {
 
   
-  private contect;
-  
   private db;
+  
+  private sell;
 
   constructor(public navCtrl: NavController,public navParams: NavParams){
   }
-  goToPage10(){
-    this.navCtrl.push(Page10Page)
+  goToPage13(){
+    this.navCtrl.push(Page13Page)
   }
 
   
@@ -27,34 +27,34 @@ export class Page3Page {
   }
 
   refresh(){
-    this.db = new PouchDB('contect');
+    this.db = new PouchDB('sell');
     
-    this.contect = [];
+    this.sell = [];
     
     this.db.allDocs({include_docs: true},(err, result)=>{
       if(!err){
         let rows = result.rows;
-        
         for(let i=0; i<rows.length;i++){
-
-          this.contect.push(rows[i].doc);
-
+          this.sell.push(rows[i].doc);
         }
       }
     })
+
   }
 
-  edit(contect){
+
+
+  edit(sell){
     
-    this.navCtrl.push(Page10Page,{
-     contect_id : contect._id
+    this.navCtrl.push(Page13Page,{
+     sell_id : sell._id
     })
 
   }
 
-  delete(contect){
+  delete(sell){
     if(confirm('คุณต้องการลบข้อมูลนี้ใช่ไหม ?')){
-      this.db.remove(contect, (err , result) =>{
+      this.db.remove(sell, (err , result) =>{
         if(!err){
           alert('ลบข้อมูลเรียบร้อย');
           this.refresh();
@@ -66,7 +66,7 @@ export class Page3Page {
   getItems(ev :any){
     let val = ev.target.value;
     if(val && val.trim() != ''){
-      this.contect = this.contect.filter((contect:any) =>{
+      this.sell = this.sell.filter((contect:any) =>{
         return (contect.name.toLowerCase().indexOf(val.toLowerCase()) >-1);
       })
     }else{

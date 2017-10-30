@@ -8,9 +8,16 @@ import  PouchDB  from 'pouchdb'
 })
 export class Page7Page {
 
-  praImg : any;
+  
+  private praImg;
+  private praImg2;
+  private praImg3;
   private db;
+  private db2;
+  private db3;
   private give;
+  private collec;
+  private sell;
 
   constructor(public navCtrl: NavController) {}
 
@@ -21,8 +28,17 @@ export class Page7Page {
 
   refresh(){
     this.db = new PouchDB('give');
+    this.db2 = new PouchDB('sell');
+    this.db3 = new PouchDB('collec');
     
+    this.praImg=[];
+    this.praImg2=[];
+    this.praImg3=[];
+
     this.give = [];
+    this.sell = [];
+    this.collec = [];
+    
     
     this.db.allDocs({include_docs: true},(err, result)=>{
       if(!err){
@@ -32,7 +48,33 @@ export class Page7Page {
 
           this.give.push(rows[i].doc);
           
-          this.praImg = result.praImg;
+          //this.praImg = result.praImg;
+        }
+      }
+    })
+
+    this.db2.allDocs({include_docs: true},(err, result)=>{
+      if(!err){
+        let rows = result.rows;
+        
+        for(let i=0; i<rows.length;i++){
+
+          this.sell.push(rows[i].doc);
+          
+          //this.praImg2 = result.praImg;
+        }
+      }
+    })
+
+    this.db3.allDocs({include_docs: true},(err, result)=>{
+      if(!err){
+        let rows = result.rows;
+        
+        for(let i=0; i<rows.length;i++){
+
+          this.collec.push(rows[i].doc);
+          
+          //this.praImg3 = result.praImg;
         }
       }
     })

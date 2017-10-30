@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>พระเนื้อดิน
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="pradin">
+
+  <ion-card *ngFor = "let praDin of praDin ;">
+    <ion-card-header (click)="goTo(praDin)"> 
+    {{praDin.name}}
+    </ion-card-header>
+  </ion-card>
+
+
+  
+</ion-content>

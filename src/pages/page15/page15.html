@@ -10,13 +10,18 @@
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page15">
 
     <ion-title text-center >รูปพระ</ion-title>
-    
     <br>
-    <ion-card *ngIf="praImg">
-        <img [src]="praImg">
-    </ion-card>
-  <br><br>
-
+    
+    <ion-grid>
+            <ion-row>
+                <ion-col col-6 *ngFor="let praImg of praImg ;">
+                <ion-card>
+                    <img [src]="praImg" imageViewer>
+                </ion-card>
+                </ion-col>
+            </ion-row>
+    </ion-grid>
+<br>
   <ion-list>
       
         <ion-item>
