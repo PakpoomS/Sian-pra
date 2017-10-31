@@ -1,3 +1,20 @@
 page-page2 {
-
+    ion-card {
+        position: relative;
+        text-align: center;
+        height: 200px;
+        width: 40%;
+      }
+    
+      .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 3.0em;
+        width: 100%;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+      }
+    .img {
+        -webkit-filter: brightness(65%);
+    }
 }

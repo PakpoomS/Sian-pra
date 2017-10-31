@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      ประวัติการขาย
+      ประวัติการให้เช่า
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only solid (click)="goToPage13()">
@@ -12,33 +12,12 @@
 </ion-header>
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page5">
   
-
-  <ion-list radio-group [(ngModel)]="choa">
-    
-  <ion-item>
-        <ion-label>ทั้งหมด</ion-label>
-        <ion-radio checked="true" value="s"></ion-radio>
-  </ion-item>
-    
-  
-  <ion-item>
-      <ion-label>เช่า</ion-label>
-      <ion-radio  value="เช่า"></ion-radio>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label>ไม่ได้เช่า</ion-label>
-      <ion-radio value="ไม่ได้เช่า"></ion-radio>
-    </ion-item>
-  </ion-list>
-
-
   <br><ion-searchbar placeholder="ค้นหาประวัติการขาย" (ionInput)="getItems($event)"></ion-searchbar><br>
 
   <ion-list>
       <ion-item-sliding  *ngFor="let sell of sell"> <br>
       
-        <ion-item *ngIf="choa == 's'" (click)="goToPage16(sell)">
+        <ion-item (click)="goToPage16(sell)">
             ชื่อพระ : {{sell.a1}}
             <br>
             <p>
@@ -67,41 +46,8 @@
 
 
       </ion-item-sliding>
-  </ion-list>
-  
-  <ion-list>
-    <ion-item-sliding  *ngFor="let sell of sell"> <br>
-    
-      <ion-item *ngIf="sell.a5 == choa" (click)="goToPage16(sell)">
-          ชื่อพระ : {{sell.a1}}
-          <br>
-          <p>
-           รุ่น : {{sell.a2}}
-          </p>
-          <p>
-           ประเภท : {{sell.a3}}
-          </p>
-          <p>
-           ชื่อลูกค้า : {{sell.a4}}
-          </p>
-          <p>
-           การนัดหมาย : {{sell.a15}}
-          </p>
-      </ion-item>
-      <ion-item-options side="right">
-        <button (click)="edit(sell)" ion-button color="primary">
-          <ion-icon name="create"></ion-icon>
-          แก้ไข
-        </button>
-        <button (click)="delete(sell)" ion-button color="danger">
-            <ion-icon name="trash"></ion-icon>
-          ลบข้อมูล
-        </button>
-      </ion-item-options>
+  </ion-list> 
 
-
-    </ion-item-sliding>
-</ion-list>
   
   
 
