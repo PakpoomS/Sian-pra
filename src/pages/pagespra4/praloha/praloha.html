@@ -1,0 +1,22 @@
+<!--
+  Generated template for the PralohaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>พระเนื้อโลหะ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;">
+  <ion-card *ngFor = "let praLoha of praLoha ;">
+    <ion-card-header (click)="goTo(praLoha)"> 
+    {{praLoha.name}}
+    </ion-card-header>
+  </ion-card>
+</ion-content>

@@ -31,10 +31,11 @@
           <ion-option (ionSelect)="etcf()" value = "พระเนื้อว่าน">พระเนื้อว่าน</ion-option>
           <ion-option (ionSelect)="etct()" value = "">พระเนื้ออื่น ๆ</ion-option>
         </ion-select> 
-        <ion-input [(ngModel)]="a3"  disabled={{dis}} type="text"></ion-input>
+        
       </ion-item>
-
-
+      <ion-item>
+      <ion-input [(ngModel)]="a3"  disabled={{dis}} type="text"></ion-input>
+    </ion-item>
       <ion-item>
           <ion-label  floating>ราคา</ion-label>
           <ion-input [(ngModel)]="a4" type="text"></ion-input>

@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>พระเนื้อชิน</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;">
+
+  <ion-card *ngFor = "let praChin of praChin ;">
+    <ion-card-header (click)="goTo(praChin)"> 
+    {{praChin.name}}
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

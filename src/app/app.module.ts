@@ -32,6 +32,51 @@ import { PradinData4Page } from'../pages/pagespra/pradin-data4/pradin-data4';
 import { PradinData5Page } from'../pages/pagespra/pradin-data5/pradin-data5';
 
 
+//ข้อมูลพระต่าง ๆ //ส่วนพระชิน
+import { PrachinPage } from'../pages/pagespra2/prachin/prachin';
+import { PrachinDataPage } from'../pages/pagespra2/prachin-data/prachin-data';
+import { PrachinData2Page } from'../pages/pagespra2/prachin-data2/prachin-data2';
+import { PrachinData3Page } from'../pages/pagespra2/prachin-data3/prachin-data3';
+import { PrachinData4Page } from'../pages/pagespra2/prachin-data4/prachin-data4';
+import { PrachinData5Page } from'../pages/pagespra2/prachin-data5/prachin-data5';
+
+//ข้อมูลพระต่าง ๆ //ส่วนพระผง
+import { PrapongPage } from'../pages/pagespra3/prapong/prapong';
+import { PrapongDataPage } from'../pages/pagespra3/prapong-data/prapong-data';
+import { PrapongData2Page } from'../pages/pagespra3/prapong-data2/prapong-data2';
+import { PrapongData3Page } from'../pages/pagespra3/prapong-data3/prapong-data3';
+import { PrapongData4Page } from'../pages/pagespra3/prapong-data4/prapong-data4';
+import { PrapongData5Page } from'../pages/pagespra3/prapong-data5/prapong-data5';
+
+//ข้อมูลพระต่าง ๆ //ส่วนพระโลหะ
+import { PralohaPage } from'../pages/pagespra4/praloha/praloha';
+import { PralohaDataPage } from'../pages/pagespra4/praloha-data/praloha-data';
+import { PralohaData2Page } from'../pages/pagespra4/praloha-data2/praloha-data2';
+import { PralohaData3Page } from'../pages/pagespra4/praloha-data3/praloha-data3';
+import { PralohaData4Page } from'../pages/pagespra4/praloha-data4/praloha-data4';
+import { PralohaData5Page } from'../pages/pagespra4/praloha-data5/praloha-data5';
+
+//ข้อมูลพระต่าง ๆ //ส่วนพระโลหะ
+import { PrawanPage} from'../pages/pagespra5/prawan/prawan';
+import { PrawanDataPage} from'../pages/pagespra5/prawan-data/prawan-data';
+import { PrawanData2Page} from'../pages/pagespra5/prawan-data2/prawan-data2';
+import { PrawanData3Page} from'../pages/pagespra5/prawan-data3/prawan-data3';
+import { PrawanData4Page} from'../pages/pagespra5/prawan-data4/prawan-data4';
+import { PrawanData5Page} from'../pages/pagespra5/prawan-data5/prawan-data5';
+
+//ข้อมูลพระต่าง ๆ //ส่วนพระอื่น 
+import { PraetcPage } from'../pages/pagespra6/praetc/praetc';
+import { PraetcDataPage } from'../pages/pagespra6/praetc-data/praetc-data';
+import { PraetcData2Page } from'../pages/pagespra6/praetc-data2/praetc-data2';
+
+
+
+
+
+
+
+
+
 //import โมดูลเครื่อง
 import { Camera } from '@ionic-native/camera';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
@@ -66,7 +111,34 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PradinData2Page,
     PradinData3Page,
     PradinData4Page,
-    PradinData5Page
+    PradinData5Page,
+    PrachinPage,
+    PrachinDataPage,
+    PrachinData2Page,
+    PrachinData3Page,
+    PrachinData4Page,
+    PrachinData5Page,
+    PrapongPage,
+    PrapongDataPage,
+    PrapongData2Page,
+    PrapongData3Page,
+    PrapongData4Page,
+    PrapongData5Page,
+    PralohaPage,
+    PralohaDataPage,
+    PralohaData2Page,
+    PralohaData3Page,
+    PralohaData4Page,
+    PralohaData5Page,
+    PrawanPage,
+    PrawanDataPage,
+    PrawanData2Page,
+    PrawanData3Page,
+    PrawanData4Page,
+    PrawanData5Page,
+    PraetcPage,
+    PraetcDataPage,
+    PraetcData2Page
   ],
   imports: [
     BrowserModule,
@@ -100,7 +172,34 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PradinData2Page,
     PradinData3Page,
     PradinData4Page,
-    PradinData5Page
+    PradinData5Page,
+    PrachinPage,
+    PrachinDataPage,
+    PrachinData2Page,
+    PrachinData3Page,
+    PrachinData4Page,
+    PrachinData5Page,
+    PrapongPage,
+    PrapongDataPage,
+    PrapongData2Page,
+    PrapongData3Page,
+    PrapongData4Page,
+    PrapongData5Page,
+    PralohaPage,
+    PralohaDataPage,
+    PralohaData2Page,
+    PralohaData3Page,
+    PralohaData4Page,
+    PralohaData5Page,
+    PrawanPage,
+    PrawanDataPage,
+    PrawanData2Page,
+    PrawanData3Page,
+    PrawanData4Page,
+    PrawanData5Page,
+    PraetcPage,
+    PraetcDataPage,
+    PraetcData2Page
   ],
   providers: [
     StatusBar,

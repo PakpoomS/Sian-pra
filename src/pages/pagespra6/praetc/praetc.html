@@ -1,0 +1,24 @@
+<!--
+  Generated template for the PraetcPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>พระเนื้ออื่น ๆ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;">
+  
+    <ion-card *ngFor = "let praEtc of praEtc ;">
+      <ion-card-header (click)="goTo(praEtc)"> 
+      {{praEtc.name}}
+      </ion-card-header>
+    </ion-card>
+  
+  </ion-content>
