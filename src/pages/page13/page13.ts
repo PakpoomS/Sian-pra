@@ -159,8 +159,8 @@ cancel(){
   }
   contectF(){
     this.dis2 = true;
-    this.a15 = null;
     this.a16 = null;
+    this.a17 = null;
   }
 
   //ถ่ายจากกล้อง
