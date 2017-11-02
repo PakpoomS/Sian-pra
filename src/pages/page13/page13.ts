@@ -138,6 +138,7 @@ dis2:boolean = true;
         a14 : this.a14,
         a15 : this.a15,
         a16 : this.a16,
+        a17 : this.a17,
         audio : this.audio,
         praImg : this.praImg,
         cerImg : this.cerImg
