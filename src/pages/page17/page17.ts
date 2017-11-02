@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , AlertController } from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import PouchDB from 'pouchdb';
 
@@ -20,7 +20,7 @@ export class Page17Page {
   private db;
   private text;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera,private alertCtrl : AlertController) {}
 
   setupDB(){
     this.db = new PouchDB('text');
@@ -115,7 +115,32 @@ takePhotoPra(){
       });
     }
 
-
+    deletePhoto(index) {
+      let confirm = this
+        .alertCtrl
+        .create({
+          title: 'คุณต้องการลบภาพนี้ใช่หรือไม่ ?',
+          message: '',
+          buttons: [
+            {
+              text: 'ยกเลิก',
+              handler: () => {
+                console.log('Disagree clicked');
+              }
+            }, {
+              text: 'ตกลง',
+              handler: () => {
+                console.log('Agree clicked');
+                this
+                  .praImg
+                  .splice(index, 1);
+                //return true;
+              }
+            }
+          ]
+        });
+      confirm.present();
+    }
 
 
 }
