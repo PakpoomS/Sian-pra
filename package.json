@@ -66,9 +66,7 @@
       "cordova-plugin-ionic-webview": {},
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-calendar": {
-        "CALENDAR_USAGE_DESCRIPTION": " "
-      },
+      "cordova-plugin-calendar": {},
       "cordova-plugin-media": {},
       "cordova-plugin-file": {}
     },

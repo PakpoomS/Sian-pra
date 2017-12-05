@@ -351,7 +351,7 @@ cancel(){
       this.audio = this.media.create(this.auPath);
       }else if(this.platform.is('android')){
       this.auName = 'record' +this.a1 +'.3gp';
-      this.auPath = this.file.externalApplicationStorageDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
       this.audio = this.media.create(this.auPath);
       }
       this.audio.startRecord();
@@ -366,7 +366,7 @@ cancel(){
       this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
       this.audio = this.media.create(this.auPath);
       }else if(this.platform.is('android')) {
-      this.auPath = this.file.externalApplicationStorageDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
       this.audio = this.media.create(this.auPath);
       }
       this.audio.play();
