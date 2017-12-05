@@ -113,20 +113,26 @@
      
           <ion-item>  
           
-              <ion-label>วันที่ :</ion-label>
-              <ion-datetime disabled={{dis2}} displayFormat="DD/MMMM/YYYY" doneText="ตกลง" cancelText="ยกเลิก" [(ngModel)]="a16"
-              monthNames="มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม"
-              ></ion-datetime>
+              <ion-label>วันที่ และ เวลา:</ion-label>
+              <ion-datetime disabled={{dis2}} displayFormat="DD/M/YYYY HH:m" doneText="ตกลง" cancelText="ยกเลิก" [(ngModel)]="a16"></ion-datetime>
           </ion-item>
-          <ion-item>
-              <ion-label>เวลา :</ion-label>
-              <ion-datetime disabled={{dis2}} displayFormat="HH:mm" doneText="ตกลง" cancelText="ยกเลิก" [(ngModel)]="a17"></ion-datetime>
-            </ion-item>
 
     </ion-list>
     
     <br>
-    <button ion-button round color="dark">อัพโหลดเสียง</button>
+    
+    <button ion-button primary (click)="stopRecord()" *ngIf="recording"><ion-icon name="mic-off">&nbsp;&nbsp;หยุดการอัดเสียง</ion-icon></button>
+    <button ion-button primary (click)="startRecord()" *ngIf="!recording"><ion-icon name="mic">&nbsp;&nbsp;เริ่มการอัดเสียง</ion-icon></button>
+    <br>
+    <br>
+    <ion-list>
+        <ion-item>
+          <p>ฟังเสียงอัด</p>
+          <button ion-button clear item-end large (click)="playAudio()"><ion-icon name="play"></ion-icon></button>
+        </ion-item>
+    </ion-list>
+    
+    <br>
     <br>
         <ion-title text-center >รูปพระ</ion-title>
         <button ion-button round color="dark" (click)="takePhotoPra()">
@@ -178,4 +184,5 @@
             ยกเลิก
     </button>
     </div>
+
 </ion-content>

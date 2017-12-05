@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams ,AlertController } from 'ionic-angular';
+import { NavController, NavParams ,AlertController,Platform} from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import { Calendar } from '@ionic-native/calendar'
+import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 import PouchDB from 'pouchdb';
 
 
@@ -27,10 +30,14 @@ export class Page13Page {
  private a14;
  private a15;
  private a16;
- private a17;
  private praImg;
  private cerImg;
- private audio;
+ private audio : MediaObject;
+ private auName:string ;
+ private auPath:string ;
+ 
+
+ recording : boolean = false;
 
  private base64Img :string;
 
@@ -45,7 +52,14 @@ dis2:boolean = true;
   private db;
   private sell;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera,private alertCtrl : AlertController) {}
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private camera: Camera,
+    private alertCtrl : AlertController , 
+    private calendar : Calendar,
+    private file : File,
+    private media: Media,
+    private platform : Platform) {}
  
   etcf(){
     this.dis=true;
@@ -83,8 +97,9 @@ dis2:boolean = true;
           this.a14 = result.a14;
           this.a15 = result.a15;
           this.a16 = result.a16;
-          this.a17 = result.a17;
           this.audio = result.audio;
+          this.auName = result.auName;
+          this.auPath = result.auPath;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
@@ -110,12 +125,33 @@ dis2:boolean = true;
       this.sell.a14 = this.a14;
       this.sell.a15 = this.a15;
       this.sell.a16 = this.a16;
-      this.sell.a17 = this.a17;
       this.sell.audio = this.audio;
+      this.sell.auName = this.auName;
+      this.sell.auPath = this.auPath;
       this.sell.praImg = this.praImg;
       this.sell.cerImg = this.cerImg;
       this.db.put(this.sell,(err, result) => {
        if(!err){
+        if(this.dis2 == false){
+          this.calendar.createEvent(this.a1,this.a7,this.a4,new Date(this.a16),new Date(this.a16)).then(
+            (msg) => {
+              let alert = this.alertCtrl.create({
+                title:'บันทึกสำเร็จ',
+                subTitle:'บันทึกการนัดหมายเรียบร้อยแล้ว',
+                buttons : ['ตกลง']
+              });
+              alert.present();
+            },
+            (err) => {
+              let alert = this.alertCtrl.create({
+                title: 'ล้มเหลวในการบันทึก',
+                subTitle: err,
+                buttons: ['OK']
+              });
+              alert.present();
+            }
+          );
+      }
           alert('อัพเดตข้อมูลเรียบร้อย');
           this.navCtrl.pop();
        }
@@ -138,12 +174,33 @@ dis2:boolean = true;
         a14 : this.a14,
         a15 : this.a15,
         a16 : this.a16,
-        a17 : this.a17,
         audio : this.audio,
+        auName : this.auName,
+        auPath : this.auPath,
         praImg : this.praImg,
         cerImg : this.cerImg
       },(err,result)=>{
         if(!err){
+          if(this.dis2 == false){
+          this.calendar.createEvent(this.a1,this.a7,this.a4,new Date(this.a16),new Date(this.a16)).then(
+            (msg) => {
+              let alert = this.alertCtrl.create({
+                title:'บันทึกสำเร็จ',
+                subTitle:'บันทึกการนัดหมายเรียบร้อยแล้ว',
+                buttons : ['ตกลง']
+              });
+              alert.present();
+            },
+            (err) => {
+              let alert = this.alertCtrl.create({
+                title: 'ล้มเหลวในการบันทึก',
+                subTitle: err,
+                buttons: ['OK']
+              });
+              alert.present();
+            }
+          );
+        } 
           alert('บันทึกข้อมูลเรียบร้อย');
           this.navCtrl.pop();
         }
@@ -161,7 +218,6 @@ cancel(){
   contectF(){
     this.dis2 = true;
     this.a16 = null;
-    this.a17 = null;
   }
 
   //ถ่ายจากกล้อง
@@ -286,6 +342,36 @@ cancel(){
         });
       confirm.present();
     }
+    
 
-
+    startRecord(){
+      if (this.platform.is('ios')) {
+      this.auName = 'record' +this.a1 +'.m4a';
+      this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.audio = this.media.create(this.auPath);
+      }else if(this.platform.is('android')){
+      this.auName = 'record' +this.a1 +'.3gp';
+      this.auPath = this.file.externalApplicationStorageDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.audio = this.media.create(this.auPath);
+      }
+      this.audio.startRecord();
+      this.recording = true;
+    }
+    stopRecord(){
+      this.audio.stopRecord();
+      this.recording = false;
+    }
+    playAudio(){
+      if (this.platform.is('ios')) {
+      this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.audio = this.media.create(this.auPath);
+      }else if(this.platform.is('android')) {
+      this.auPath = this.file.externalApplicationStorageDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.audio = this.media.create(this.auPath);
+      }
+      this.audio.play();
+      this.audio.setVolume(0.8);
+    }
+   
+    
 }

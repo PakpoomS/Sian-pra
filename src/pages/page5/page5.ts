@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { Page13Page } from '../page13/page13';
 import {Page16Page} from '../page16/page16';
+import { Calendar } from '@ionic-native/calendar';
 import PouchDB from 'pouchdb';
 
 @Component({
@@ -13,7 +14,7 @@ export class Page5Page {
   private sell;
   private db;
 
-  constructor(public navCtrl: NavController,public navParams: NavParams) {}
+  constructor(public navCtrl: NavController,public navParams: NavParams, private calendar : Calendar) {}
 
   goToPage16(sell){
     this.navCtrl.push(Page16Page,{
@@ -57,6 +58,7 @@ export class Page5Page {
     if(confirm('คุณต้องการลบข้อมูลนี้ใช่ไหม ?')){
       this.db.remove(sell, (err , result) =>{
         if(!err){
+          this.calendar.deleteEvent(sell.a1,sell.a7,sell.a4,new Date(sell.a16),new Date(sell.a16))
           alert('ลบข้อมูลเรียบร้อย');
           this.refresh();
         }

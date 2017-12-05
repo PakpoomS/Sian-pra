@@ -35,15 +35,17 @@
         <p>
           วันที่นัดหมาย : {{sell.a16}}
         </p>
-        <p>
-          เวลานัดหมาย : {{sell.a17}}
-        </p>
     </ion-item>
     <ion-item-options side="right">
       <button (click)="edit(sell)" ion-button color="primary">
         <ion-icon name="create"></ion-icon>
         แก้ไข
       </button>
+      <button (click)="delete(sell)" ion-button color="danger">
+        <ion-icon name="trash"></ion-icon>
+        ยกเลิกการนัดหมาย
+      </button>
+    
     </ion-item-options>
     </ion-item-sliding>
 

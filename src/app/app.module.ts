@@ -82,7 +82,9 @@ import { Camera } from '@ionic-native/camera';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Calendar } from '@ionic-native/calendar';
+import { Media } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 
 @NgModule({
   declarations: [
@@ -205,6 +207,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     Camera,
+    Calendar,
+    Media,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

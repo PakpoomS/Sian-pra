@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { Page13Page } from '../page13/page13';
-import { Page16Page } from '../page16/page16';
+import { Calendar } from '@ionic-native/calendar';
 import PouchDB from 'pouchdb'
 
 @Component({
@@ -12,22 +12,22 @@ export class Page3Page {
 
   
   private db;
-  
   private sell;
 
-  constructor(public navCtrl: NavController,public navParams: NavParams){
+  private a15 : string ="ถูกยกเลิก";
+  
+
+  constructor(public navCtrl: NavController,public navParams: NavParams,private calendar : Calendar){
   }
   goToPage13(){
     this.navCtrl.push(Page13Page)
   }
 
   goToPage16(sell){
-    this.navCtrl.push(Page16Page,{
-      sell_id : sell._id
-    })
+    this.calendar.openCalendar(new Date(sell.a16))
   }
 
-  
+ 
   ionViewDidEnter(){
     this.refresh();
 
@@ -60,14 +60,15 @@ export class Page3Page {
   }
 
   delete(sell){
-    if(confirm('คุณต้องการลบข้อมูลนี้ใช่ไหม ?')){
-      this.db.remove(sell, (err , result) =>{
-        if(!err){
-          alert('ลบข้อมูลเรียบร้อย');
-          this.refresh();
-        }
-      })
-    }
+    if(confirm('คุณต้องการยกเลิกนัดหมายนี้ใช่ไหม ?')){
+    this.calendar.deleteEvent(sell.a1,sell.a7,sell.a4,new Date(sell.a16),new Date(sell.a16))
+    sell.a15 = this.a15 ;
+    this.db.put(sell,(err, result)=>{
+      if(!err){
+        alert('ลบข้อมูลการนัดหมายเรียบร้อย');
+      }
+    });
+  }
   }
   
   getItems(ev :any){

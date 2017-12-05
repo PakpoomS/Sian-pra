@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
 import PouchDB from 'pouchdb'
+import { Media , MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 
 /**
  * Generated class for the Page16Page page.
@@ -32,15 +34,23 @@ export class Page16Page {
   private a14;
   private a15;
   private a16;
-  private a17;
   private praImg;
   private cerImg;
-  private audio;
+  private audio : MediaObject;
+
+  private auPath: string;
+  private auName: string;
+
+  recording : boolean = false;
 
   private db;
   private sell;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private file : File,
+              private media : Media,
+              private platform : Platform) {
   }
 
   setupDB(){
@@ -72,13 +82,25 @@ export class Page16Page {
           this.a14 = result.a14;
           this.a15 = result.a15;
           this.a16 = result.a16;
-          this.a17 = result.a17;
           this.audio = result.audio;
+          this.auName = result.auName;
+          this.auPath = result.auPatch;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
       })
     }
+  }
+  playAudio(){
+    if (this.platform.is('ios')) {
+    this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
+    this.audio = this.media.create(this.auPath);
+    }else if(this.platform.is('android')) {
+    this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
+    this.audio = this.media.create(this.auPath);
+    }
+    this.audio.play();
+    this.audio.setVolume(0.8);
   }
 
 }
