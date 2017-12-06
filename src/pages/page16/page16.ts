@@ -38,9 +38,9 @@ export class Page16Page {
   private cerImg;
   private audio : MediaObject;
 
-  private auPath: string;
-  private auName: string;
-
+  auPath: string;
+  auName: string;
+  audioList : any[] =[];
   recording : boolean = false;
 
   private db;
@@ -82,21 +82,19 @@ export class Page16Page {
           this.a14 = result.a14;
           this.a15 = result.a15;
           this.a16 = result.a16;
-          this.audio = result.audio;
-          this.auName = result.auName;
-          this.auPath = result.auPatch;
+          this.audioList = result.audioList;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
       })
     }
   }
-  playAudio(){
+  playAudio(file,idx){
     if (this.platform.is('ios')) {
-    this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
+    this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + file;
     this.audio = this.media.create(this.auPath);
     }else if(this.platform.is('android')) {
-    this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
+    this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + file;
     this.audio = this.media.create(this.auPath);
     }
     this.audio.play();

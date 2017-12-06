@@ -121,16 +121,16 @@
     
     <br>
     
-    <button ion-button primary (click)="stopRecord()" *ngIf="recording"><ion-icon name="mic-off">&nbsp;&nbsp;หยุดการอัดเสียง</ion-icon></button>
-    <button ion-button primary (click)="startRecord()" *ngIf="!recording"><ion-icon name="mic">&nbsp;&nbsp;เริ่มการอัดเสียง</ion-icon></button>
+    <button ion-button round color="dark" (click)="stopRecord()" *ngIf="recording"><ion-icon name="mic-off">&nbsp;&nbsp;หยุดการอัดเสียง</ion-icon></button>
+    <button ion-button round color="dark" (click)="startRecord()" *ngIf="!recording"><ion-icon name="mic">&nbsp;&nbsp;เริ่มการอัดเสียง</ion-icon></button>
     <br>
     <br>
     <ion-list>
-        <ion-item>
-          <p>ฟังเสียงอัด</p>
-          <button ion-button clear item-end large (click)="playAudio()"><ion-icon name="play"></ion-icon></button>
+        <ion-item *ngFor="let audio of audioList; index as i;">
+          <p>{{audio.filename}}</p>
+          <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button>
         </ion-item>
-    </ion-list>
+      </ion-list>
     
     <br>
     <br>

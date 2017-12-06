@@ -35,11 +35,11 @@
 
 <br>
 <ion-list>
-        <ion-item>
-          <p>ฟังเสียงอัด</p>
-          <button ion-button clear item-end large (click)="playAudio()"><ion-icon name="play"></ion-icon></button>
-        </ion-item>
-</ion-list>
+    <ion-item *ngFor="let audio of audioList; index as i;">
+      <p>{{audio.filename}}</p>
+      <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button>
+    </ion-item>
+  </ion-list>
 <br>
 
 <ion-list>

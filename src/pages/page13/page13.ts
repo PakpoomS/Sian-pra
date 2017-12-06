@@ -33,8 +33,9 @@ export class Page13Page {
  private praImg;
  private cerImg;
  private audio : MediaObject;
- private auName:string ;
- private auPath:string ;
+ auName:string ;
+ auPath:string ;
+ audioList : any[] =[];
  
 
  recording : boolean = false;
@@ -97,9 +98,7 @@ dis2:boolean = true;
           this.a14 = result.a14;
           this.a15 = result.a15;
           this.a16 = result.a16;
-          this.audio = result.audio;
-          this.auName = result.auName;
-          this.auPath = result.auPath;
+          this.audioList = result.audioList;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
@@ -125,9 +124,7 @@ dis2:boolean = true;
       this.sell.a14 = this.a14;
       this.sell.a15 = this.a15;
       this.sell.a16 = this.a16;
-      this.sell.audio = this.audio;
-      this.sell.auName = this.auName;
-      this.sell.auPath = this.auPath;
+      this.sell.audioList = this.audioList;
       this.sell.praImg = this.praImg;
       this.sell.cerImg = this.cerImg;
       this.db.put(this.sell,(err, result) => {
@@ -174,9 +171,7 @@ dis2:boolean = true;
         a14 : this.a14,
         a15 : this.a15,
         a16 : this.a16,
-        audio : this.audio,
-        auName : this.auName,
-        auPath : this.auPath,
+        audioList : this.audioList,
         praImg : this.praImg,
         cerImg : this.cerImg
       },(err,result)=>{
@@ -342,15 +337,22 @@ cancel(){
         });
       confirm.present();
     }
+
+    getAudioList() {
+      if(localStorage.getItem("audiolist")) {
+        this.audioList = JSON.parse(localStorage.getItem("audiolist"));
+        console.log(this.audioList);
+      }
+    }
     
 
     startRecord(){
       if (this.platform.is('ios')) {
-      this.auName = 'record' +this.a1 +'.m4a';
+      this.auName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+this.a1 +'.m4a';
       this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
       this.audio = this.media.create(this.auPath);
       }else if(this.platform.is('android')){
-      this.auName = 'record' +this.a1 +'.3gp';
+      this.auName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.3gp';
       this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
       this.audio = this.media.create(this.auPath);
       }
@@ -359,14 +361,17 @@ cancel(){
     }
     stopRecord(){
       this.audio.stopRecord();
+      let data = { filename: this.auName };
+      this.audioList.push(data);
+      localStorage.setItem("audiolist", JSON.stringify(this.audioList));
       this.recording = false;
     }
-    playAudio(){
+    playAudio(file,idx){
       if (this.platform.is('ios')) {
-      this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + file;
       this.audio = this.media.create(this.auPath);
       }else if(this.platform.is('android')) {
-      this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
+      this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + file;
       this.audio = this.media.create(this.auPath);
       }
       this.audio.play();
