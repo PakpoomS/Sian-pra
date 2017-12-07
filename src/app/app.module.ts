@@ -22,6 +22,8 @@ import { Page16Page } from'../pages/page16/page16';
 import { Page17Page } from'../pages/page17/page17';
 import { Page18Page } from'../pages/page18/page18';
 import { Page19Page } from'../pages/page19/page19';
+import { ChatpagePage } from'../pages/chatpage/chatpage';
+import { Chatpage2Page } from'../pages/chatpage2/chatpage2';
 
 //ข้อมูลพระต่าง ๆ //ส่วนพระดิน
 import { PradinPage } from'../pages/pagespra/pradin/pradin';
@@ -86,6 +88,8 @@ import { Calendar } from '@ionic-native/calendar';
 import { Media } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -140,7 +144,9 @@ import { File } from '@ionic-native/file';
     PrawanData5Page,
     PraetcPage,
     PraetcDataPage,
-    PraetcData2Page
+    PraetcData2Page,
+    ChatpagePage,
+    Chatpage2Page,
   ],
   imports: [
     BrowserModule,
@@ -201,7 +207,9 @@ import { File } from '@ionic-native/file';
     PrawanData5Page,
     PraetcPage,
     PraetcDataPage,
-    PraetcData2Page
+    PraetcData2Page,
+    ChatpagePage,
+    Chatpage2Page
   ],
   providers: [
     StatusBar,

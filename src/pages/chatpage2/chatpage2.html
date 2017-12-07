@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      ห้องแชท
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<!--	<ion-list no-lines>
+		<ion-item *ngFor="let message of messagesList">
+			<h1>{{message.name}} :</h1>
+			<p>{{message.message}}</p>
+		</ion-item>
+	</ion-list>
+</ion-content> -->
+
+
+<div id="chatMessages">
+  <div *ngFor="let message of messagesList;let i = index" [class]="message.specialMessage ? 'message special' : 'message'">
+    <div  *ngIf="i>messagesList.length-10">
+    <div [class]="message.name == name ? 'innerMessage messageRight' : 'innerMessage messageLeft'">
+      <div class="username">{{ message.name }}</div>
+      <div class="messageContent">{{ message.message }}</div>
+    </div>
+    </div>
+  </div>
+</div> 
+
+
+
+</ion-content>
+
+<ion-footer>
+	<ion-item>
+		<ion-input type="text" placeholder="พิมพ์ข้อความ..." [(ngModel)]="newmessage"></ion-input>
+		<button ion-button clear item-right (click)="send()"><ion-icon name="send"></ion-icon></button>
+  </ion-item>
+</ion-footer>

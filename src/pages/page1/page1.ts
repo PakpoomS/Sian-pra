@@ -8,6 +8,7 @@ import { Page6Page } from '../page6/page6';
 import { Page8Page } from '../page8/page8';
 import { Page9Page } from '../page9/page9';
 import { Page7Page } from '../page7/page7';
+import { ChatpagePage } from'../chatpage/chatpage';
 
 @Component({
   selector: 'page-page1',
@@ -42,5 +43,8 @@ export class Page1Page {
   }goToPage7(params){
     if (!params) params = {};
     this.navCtrl.push(Page7Page);
+  }goToChatPage(params){
+    if (!params) params = {};
+    this.navCtrl.push(ChatpagePage);
   }
 }
