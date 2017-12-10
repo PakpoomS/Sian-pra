@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams ,AlertController} from 'ionic-angular';
+import { NavController, NavParams ,AlertController,Platform} from 'ionic-angular';
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 import PouchDB from 'pouchdb';
 
 
@@ -28,8 +30,12 @@ export class Page11Page {
   private a14;
   private praImg;
   private cerImg;
-  private audio;
+  private audio : MediaObject;
+  auName:string ;
+  auPath:string ;
+  audioList : any[] =[];
 
+  recording : boolean = false;
   private base64Img :string;
 
   //ตัวแปร
@@ -44,7 +50,13 @@ export class Page11Page {
   dis2:boolean = true;
 
 
-  constructor(private camera: Camera ,public navCtrl: NavController, public navParams: NavParams, private alertCtrl : AlertController) {}
+  constructor(private camera: Camera ,
+              public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private alertCtrl : AlertController,
+              private file : File,
+              private media: Media,
+              private platform : Platform) {}
   
   etcf(){
     this.dis=true;
@@ -80,7 +92,7 @@ export class Page11Page {
           this.a12 = result.a12;
           this.a13 = result.a13;
           this.a14 = result.a14;
-          this.audio = result.audio;
+          this.audioList = result.audioList;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
@@ -104,7 +116,7 @@ export class Page11Page {
       this.give.a12 = this.a12;
       this.give.a13 = this.a13;
       this.give.a14 = this.a14;
-      this.give.audio = this.audio;
+      this.give.audioList = this.audioList;
       this.give.praImg = this.praImg;
       this.give.cerImg = this.cerImg;
       // update จากการแก้ไข
@@ -132,7 +144,7 @@ export class Page11Page {
         a12 : this.a12,
         a13 : this.a13,
         a14 : this.a14,
-        audio : this.audio,
+        audioList : this.audioList,
         praImg : this.praImg,
         cerImg : this.cerImg
       },(err,result)=>{
@@ -276,6 +288,46 @@ cancel(){
       });
     confirm.present();
   }
+  getAudioList() {
+    if(localStorage.getItem("audiolist")) {
+      this.audioList = JSON.parse(localStorage.getItem("audiolist"));
+      console.log(this.audioList);
+    }
+  }
+  
+
+  startRecord(){
+    if (this.platform.is('ios')) {
+    this.auName = 'record'+ new Date().getMinutes()+new Date().getSeconds()+this.a1 +'.m4a';
+    this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
+    this.audio = this.media.create(this.auPath);
+    }else if(this.platform.is('android')){
+    this.auName = 'record'+ new Date().getMinutes()+new Date().getSeconds()+this.a1 +'.3gp';
+    this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
+    this.audio = this.media.create(this.auPath);
+    }
+    this.audio.startRecord();
+    this.recording = true;
+  }
+  stopRecord(){
+    this.audio.stopRecord();
+    let data = { filename: this.auName };
+    this.audioList.push(data);
+    localStorage.setItem("audiolist", JSON.stringify(this.audioList));
+    this.recording = false;
+  }
+  playAudio(file,idx){
+    if (this.platform.is('ios')) {
+    this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + file;
+    this.audio = this.media.create(this.auPath);
+    }else if(this.platform.is('android')) {
+    this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + file;
+    this.audio = this.media.create(this.auPath);
+    }
+    this.audio.play();
+    this.audio.setVolume(0.8);
+  }
+ 
 
     
 }

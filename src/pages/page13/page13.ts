@@ -348,11 +348,11 @@ cancel(){
 
     startRecord(){
       if (this.platform.is('ios')) {
-      this.auName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+this.a1 +'.m4a';
+      this.auName = 'record'+ new Date().getMinutes()+new Date().getSeconds()+this.a1 +'.m4a';
       this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + this.auName;
       this.audio = this.media.create(this.auPath);
       }else if(this.platform.is('android')){
-      this.auName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.3gp';
+      this.auName = 'record'+ new Date().getMinutes()+new Date().getSeconds()+this.a1 +'.3gp';
       this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + this.auName;
       this.audio = this.media.create(this.auPath);
       }

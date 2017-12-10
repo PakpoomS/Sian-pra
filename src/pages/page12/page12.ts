@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams , Platform } from 'ionic-angular';
+import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 import PouchDB from 'pouchdb';
 
 
@@ -8,8 +10,6 @@ import PouchDB from 'pouchdb';
   templateUrl: 'page12.html',
 })
 export class Page12Page {
-  praImg : any ;
-  cerImg : any ;
 
   // ตัวแปรข้อมูลทั้งหมด
   private a1;
@@ -26,7 +26,14 @@ export class Page12Page {
   private a12;
   private a13;
   private a14;
-
+  private praImg;
+  private cerImg;
+  private audio : MediaObject;
+  auName:string ;
+  auPath:string ;
+  audioList : any[] =[];
+  recording : boolean = false;
+  
   //ตัวแปร
   private db;
 
@@ -34,7 +41,11 @@ export class Page12Page {
   private give;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private file : File,
+              private media: Media,
+              private platform : Platform) {}
  
   setupDB(){
     this.db = new PouchDB('give');
@@ -62,10 +73,22 @@ export class Page12Page {
           this.a12 = result.a12;
           this.a13 = result.a13;
           this.a14 = result.a14;
+          this.audioList = result.audioList;
           this.praImg = result.praImg;
           this.cerImg = result.cerImg;
         }
       })
     }
+  }
+  playAudio(file,idx){
+    if (this.platform.is('ios')) {
+    this.auPath = this.file.documentsDirectory.replace(/file:\/\//g,'') + file;
+    this.audio = this.media.create(this.auPath);
+    }else if(this.platform.is('android')) {
+    this.auPath = this.file.externalDataDirectory.replace(/file:\/\//g,'') + file;
+    this.audio = this.media.create(this.auPath);
+    }
+    this.audio.play();
+    this.audio.setVolume(0.8);
   }
 }
