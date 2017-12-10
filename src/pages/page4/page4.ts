@@ -74,9 +74,11 @@ export class Page4Page {
     let val = ev.target.value;
     if(val && val.trim() != ''){
       this.give = this.give.filter((give:any) =>{
-        return (give.a2.toLowerCase().indexOf(val.toLowerCase()) >-1);
-      })
-    }else{
+      return (give.a2.toLowerCase().indexOf(val.toLowerCase()) >-1)|| 
+      (give.a3.toLowerCase().indexOf(val.toLowerCase()) >-1) ||  
+      (give.a4.toLowerCase().indexOf(val.toLowerCase()) >-1) ;
+    })}
+      else{
       this.refresh();
     }
   }

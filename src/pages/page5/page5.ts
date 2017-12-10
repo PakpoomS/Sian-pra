@@ -70,7 +70,10 @@ export class Page5Page {
     let val = ev.target.value;
     if(val && val.trim() != ''){
       this.sell = this.sell.filter((sell:any) =>{
-        return (sell.a1.toLowerCase().indexOf(val.toLowerCase()) >-1);
+        return (sell.a1.toLowerCase().indexOf(val.toLowerCase()) >-1) ||
+               (sell.a2.toLowerCase().indexOf(val.toLowerCase()) >-1) ||
+               (sell.a3.toLowerCase().indexOf(val.toLowerCase()) >-1) ||
+               (sell.a4.toLowerCase().indexOf(val.toLowerCase()) >-1);
       })
     }else{
       this.refresh();
