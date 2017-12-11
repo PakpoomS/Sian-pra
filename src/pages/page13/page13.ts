@@ -130,7 +130,10 @@ dis2:boolean = true;
       this.db.put(this.sell,(err, result) => {
        if(!err){
         if(this.dis2 == false){
-          this.calendar.createEvent(this.a1,this.a7,this.a4,new Date(this.a16),new Date(this.a16)).then(
+          var calOptions = this.calendar.getCalendarOptions();
+          calOptions.firstReminderMinutes =  5;
+          calOptions.secondReminderMinutes = 10;
+          this.calendar.createEventWithOptions(this.a1,this.a7,this.a4,new Date(this.a16.toISOString()),new Date(this.a16.toISOString()),calOptions).then(
             (msg) => {
               let alert = this.alertCtrl.create({
                 title:'บันทึกสำเร็จ',
@@ -177,7 +180,12 @@ dis2:boolean = true;
       },(err,result)=>{
         if(!err){
           if(this.dis2 == false){
-          this.calendar.createEvent(this.a1,this.a7,this.a4,new Date(this.a16),new Date(this.a16)).then(
+            var calOptions = this.calendar.getCalendarOptions();
+            calOptions.firstReminderMinutes =  1;
+            calOptions.secondReminderMinutes = 5;
+            var myDate = new Date().toISOString();
+            myDate  = this.a16;
+            this.calendar.createEventWithOptions(this.a1,this.a7,this.a4,new Date(myDate),new Date(myDate),calOptions).then(
             (msg) => {
               let alert = this.alertCtrl.create({
                 title:'บันทึกสำเร็จ',
