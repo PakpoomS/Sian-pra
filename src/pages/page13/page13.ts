@@ -5,6 +5,7 @@ import { Calendar } from '@ionic-native/calendar'
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import PouchDB from 'pouchdb';
+import * as moment from 'moment';
 
 
 @Component({
@@ -76,6 +77,7 @@ dis2:boolean = true;
   }
 
   ionViewDidLoad(){
+    this.a16 = moment().format();
     this.setupDB();
     if(this.navParams.get('sell_id')!=null){
       //เรียกขึ้นมาแก้ไข 
@@ -133,7 +135,7 @@ dis2:boolean = true;
           var calOptions = this.calendar.getCalendarOptions();
           calOptions.firstReminderMinutes =  5;
           calOptions.secondReminderMinutes = 10;
-          this.calendar.createEventWithOptions(this.a1,this.a7,this.a4,new Date(this.a16.toISOString()),new Date(this.a16.toISOString()),calOptions).then(
+          this.calendar.createEventWithOptions(this.a1,this.a7,this.a4,new Date(this.a16),new Date(this.a16),calOptions).then(
             (msg) => {
               let alert = this.alertCtrl.create({
                 title:'บันทึกสำเร็จ',
@@ -183,9 +185,7 @@ dis2:boolean = true;
             var calOptions = this.calendar.getCalendarOptions();
             calOptions.firstReminderMinutes =  1;
             calOptions.secondReminderMinutes = 5;
-            var myDate = new Date().toISOString();
-            myDate  = this.a16;
-            this.calendar.createEventWithOptions(this.a1,this.a7,this.a4,new Date(myDate),new Date(myDate),calOptions).then(
+            this.calendar.createEventWithOptions(this.a1,this.a7,this.a4,new Date(this.a16),new Date(this.a16),calOptions).then(
             (msg) => {
               let alert = this.alertCtrl.create({
                 title:'บันทึกสำเร็จ',
@@ -221,6 +221,7 @@ cancel(){
   contectF(){
     this.dis2 = true;
     this.a16 = null;
+    this.a16 = moment().format();
   }
 
   //ถ่ายจากกล้อง
