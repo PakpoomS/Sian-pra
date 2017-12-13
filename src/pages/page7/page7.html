@@ -7,21 +7,25 @@
 </ion-header>
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page7">
 
-
-  <ion-card *ngFor ="let give of give" (click)="goToPage10(give)">
-      <img src="assets/img/Backimg.png" class="img">
+<div *ngFor ="let give of give" (click)="goToPage10(give)">
+  <ion-card *ngIf="give.praImg[0] != null">
+      <img src= {{give.praImg[0]}} >
       <div class="card-title">{{give.a2}}</div> 
   </ion-card>
+</div>
 
-  <ion-card *ngFor ="let sell of sell" (click)="goToPage10a(sell)">
-      <img src="assets/img/Backimg.png" class="img">
+<div *ngFor ="let sell of sell" (click)="goToPage10a(sell)">
+  <ion-card *ngIf="sell.praImg[0] != null">
+      <img src= {{sell.praImg[0]}} >
       <div class="card-title">{{sell.a1}}</div>  
   </ion-card>
+</div>
 
-  <ion-card *ngFor ="let collec of collec" (click)="goToPage10b(collec)">
-      <img src="assets/img/Backimg.png" class="img">
+<div *ngFor ="let collec of collec" (click)="goToPage10b(collec)">
+  <ion-card *ngIf="collec.praImg[0] != null">
+      <img src {{collec.praImg[0]}}>
       <div class="card-title">{{collec.a1}}</div>  
   </ion-card>
-
+</div>
 
 </ion-content>

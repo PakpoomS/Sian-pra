@@ -7,14 +7,18 @@
 </ion-header>
 <ion-content padding style="background:url(assets/img/Background.jpg) no-repeat center;background-size:cover;background-color:#FFFFFF;" id="page6">
 
-<ion-card *ngFor ="let give of give" (click)="goToPage19(give)">
-    <img src="assets/img/Backimg.png" class="img">
-    <div class="card-title">{{give.a2}}</div> 
-</ion-card>
+<div *ngFor ="let give of give" (click)="goToPage19(give)">
+  <ion-card *ngIf="give.cerImg[0] != null">
+    <img src= {{give.cerImg[0]}}>
+    <div class="card-title">{{give.a2}}</div>
+  </ion-card>
+</div>
 
-<ion-card *ngFor ="let sell of sell" (click)="goToPage19a(sell)">
-    <img src="assets/img/Backimg.png" class="img">
+
+<div *ngFor ="let sell of sell" (click)="goToPage19a(sell)">
+<ion-card *ngIf="sell.cerImg[0] != null">
+    <img src= {{sell.cerImg[0]}} class="img">
     <div class="card-title">{{sell.a1}}</div>  
 </ion-card>
-
+</div>
 </ion-content>
