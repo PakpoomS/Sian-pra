@@ -19,12 +19,7 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     let config = {
-      apiKey: "AIzaSyD6OZgO-6Q6SlMLgcQDJe53Kc-y9j82oiU",
-      authDomain: "sian-pra.firebaseapp.com",
-      databaseURL: "https://sian-pra.firebaseio.com",
-      projectId: "sian-pra",
-      storageBucket: "sian-pra.appspot.com",
-      messagingSenderId: "265633178027"
+      //ใส่ Key API Firebase
     };
     firebase.initializeApp(config);
     platform.ready().then(() => {
